@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: testdb
+    environment:
+      MYSQL_ROOT_PASSWORD: 'passwd'
+      MYSQL_DATABASE: test
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+    - ./ddl/world.sql.gz:/docker-entrypoint-initdb.d/world.sql.gz
+    ports:
+    - 43306:3306
